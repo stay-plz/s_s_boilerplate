@@ -3,8 +3,6 @@ import express from "express";
 import "./db";
 import app from "./index";
 
-const port = 4000;
-
-app.listen(port, () => {
-    console.log(`✅ ${port} port Server On `);
+app.listen(process.env.PORT, () => {
+    console.log(`✅ ${process.env.PORT} port Server On `);
 });
