@@ -1,7 +1,6 @@
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import res from "express/lib/response";
 
 const userSchema = mongoose.Schema({
     name: { type: String, maxlength: 20 },

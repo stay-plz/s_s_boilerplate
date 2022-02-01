@@ -5,8 +5,6 @@ import cookieParser from "cookie-parser";
 
 //path
 import rootRouter from "./src/routes/rootRouter";
-import middlewares from "./src/middlewares/middleswares";
-
 const app = express();
 
 //morgan
@@ -19,4 +17,5 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 app.use("/", rootRouter);
+
 export default app;
