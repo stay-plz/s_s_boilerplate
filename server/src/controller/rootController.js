@@ -20,10 +20,10 @@ export const postRegister = async (req, res) => {
         const result = await user.save();
 
         return res.status(200).json({
-            success: true,
+            registerSuccess: true,
         });
     } catch (err) {
-        return res.status(500).json({ success: false, err });
+        return res.status(500).json({ registerSuccess: false, err });
     }
 };
 export const getLogin = (req, res) => res.send("getLogin");
@@ -65,7 +65,7 @@ export const getAuth = (req, res) => {
     const { _id, name, email, role, image } = req.user;
     return res.status(200).json({
         _id,
-        isAUth: true,
+        isAuth: true,
         isAdmin: role === 0 ? true : false,
         name,
         email,
@@ -80,10 +80,10 @@ export const postLogout = async (req, res) => {
         const { _id } = req.user;
         const isUpdate = await User.findOneAndUpdate({ _id: _id }, { token: "" });
         if (!isUpdate) {
-            return res.json({ logout: false });
+            return res.json({ logoutSuccess: false });
         }
-        return res.status(200).json({ logout: true });
+        return res.status(200).json({ logoutSuccess: true });
     } catch (err) {
-        return res.json({ logout: false, err: err.message });
+        return res.json({ logoutSuccess: false, err: err.message });
     }
 };

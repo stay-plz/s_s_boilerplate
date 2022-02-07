@@ -1,5 +1,4 @@
-import "./src/config/key";
-import express from "express";
+import "../setEnv";
 import "./db";
 import app from "./index";
 

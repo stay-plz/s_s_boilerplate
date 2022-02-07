@@ -13,7 +13,7 @@ export const authentication = async (req, res, next) => {
         const user = await User.findByToken(token);
         if (!user) {
             return res.json({
-                isAUth: false,
+                isAuth: false,
                 error: true,
             });
         }
