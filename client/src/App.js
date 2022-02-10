@@ -4,6 +4,7 @@ import LoginPage from "./components/views/LoginPage/LoginPage";
 import RegisterPage from "./components/views/RegisterPage/RegisterPage";
 import MovieMainPage from "./components/movieapp/MovieMain";
 import Auth from "./hoc/auth";
+import MovieDetail from "./components/movieapp/MovieDetail";
 
 const NewLandingPage = Auth(LandingPage, null);
 const NewLoginPage = Auth(LoginPage, false);
@@ -17,6 +18,7 @@ function App() {
                 <Route path="/login" element={<NewLoginPage />} />
                 <Route path="/register" element={<NewRegisterPage />} />
                 <Route path="/moviemain" element={<MovieMainPage />} />
+                <Route path="/movie/:id" element={<MovieDetail />} />
             </Routes>
         </BrowserRouter>
     );

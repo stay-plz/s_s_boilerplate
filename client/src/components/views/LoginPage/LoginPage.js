@@ -4,8 +4,8 @@ import { useDispatch } from "react-redux";
 import { loginUser } from "../../../_redux/actions/user_action";
 
 function LoginPage(props) {
-        const navigate = useNavigate();
-        const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -27,6 +27,7 @@ function LoginPage(props) {
         dispatch(loginUser(body))
             .then(response => {
                 if(response.payload.loginSuccess) {
+                    window.localStorage.setItem("userId", response.payload.userId);
                     navigate("/");
                 } else {
                     alert("ERROR");

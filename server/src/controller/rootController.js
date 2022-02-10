@@ -1,4 +1,5 @@
 import User from "../models/User";
+import Favorite from "../models/Favorite";
 import bcrypt from "bcrypt";
 
 export const home = (req, res) => res.send("Home Router");
@@ -85,5 +86,19 @@ export const postLogout = async (req, res) => {
         return res.status(200).json({ logoutSuccess: true });
     } catch (err) {
         return res.json({ logoutSuccess: false, err: err.message });
+    }
+};
+
+export const postFavoriteNumber = async (req, res) => {
+    try {
+        const { movieIds } = req.body;
+        const result = await Favorite.find({ movieId : movieIds});
+        if(!result) {
+            return res.status(400).json({success : false , err : err});
+        }
+        return res.status(200).json({ success : true , favoriteNumber : result.length});
+    } catch(err) {
+        console.log(err)
+            return res.status(400).json({success : false , err : err});
     }
 };

@@ -7,6 +7,7 @@ import {
     postRegister,
     getAuth,
     postLogout,
+    postFavoriteNumber,
 } from "../controller/rootController";
 import { authentication } from "../middlewares/middleswares";
 
@@ -17,6 +18,6 @@ rootRouter.route("/api/users/register").get(getRegister).post(postRegister);
 rootRouter.route("/api/users/login").get(getLogin).post(postLogin);
 rootRouter.get("/api/users/auth", authentication, getAuth);
 rootRouter.post("/api/users/logout", authentication, postLogout);
-rootRouter.get("/api/axiosTest", (req, res) => res.send("안녕하세요 axios Test 입니다. "));
+rootRouter.post("/api/favorite/favoriteNumber" , postFavoriteNumber)
 
 export default rootRouter;
