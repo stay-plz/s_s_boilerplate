@@ -50,11 +50,11 @@ function MovieDetail(props) {
         <div style={{ width : '85%', margin : '1rem auto'}}>
             {/* Favorite button */}
             <div style={{display : 'flex', justifyContent : 'flex-end'}}>
-                <Favorite 
-                    movieInfo={movie}
-                    movieId={id}
-                    userFrom={localStorage.getItem("userId")}
-                />
+                    <Favorite 
+                        movieInfo={movie}
+                        movieId={id}
+                        userFrom={localStorage.getItem("userId")}
+                    />
             </div>
             {/* Movie Info */}
             <MovieInfo movie={movie} />

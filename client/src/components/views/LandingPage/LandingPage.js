@@ -5,13 +5,6 @@ import { useNavigate } from "react-router-dom";
 function LandingPage(props) {
     const navigate = useNavigate();
 
-    useEffect(() => {
-        axios
-            .get("/api/axiosTest")
-            .then((response) => console.log(response))
-            .catch((error) => console.log(error));
-    }, []);
-
     const onClickHandler = (event) => {
         axios.post("/api/users/logout")
             .then(response => {

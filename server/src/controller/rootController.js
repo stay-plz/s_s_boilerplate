@@ -77,7 +77,6 @@ export const getAuth = (req, res) => {
 
 export const postLogout = async (req, res) => {
     try {
-        console.log(req.user);
         const { _id } = req.user;
         const isUpdate = await User.findOneAndUpdate({ _id: _id }, { token: "" });
         if (!isUpdate) {
@@ -91,14 +90,72 @@ export const postLogout = async (req, res) => {
 
 export const postFavoriteNumber = async (req, res) => {
     try {
-        const { movieIds } = req.body;
-        const result = await Favorite.find({ movieId : movieIds});
+        const { movieId } = req.body;
+        const result = await Favorite.find({ movieId : movieId});
         if(!result) {
             return res.status(400).json({success : false , err : err});
         }
         return res.status(200).json({ success : true , favoriteNumber : result.length});
     } catch(err) {
-        console.log(err)
-            return res.status(400).json({success : false , err : err});
+        return res.status(400).json({success : false , err : err});
     }
 };
+
+export const postFavorited = async (req, res) => {
+    try{
+        const {movieId , userFrom} = req.body;
+        const result = await Favorite.find({ movieId : movieId , userFrom : userFrom});
+
+        let isfavorited = false;
+        if(result.length !== 0)  isfavorited = true;
+        return res.status(200).json({ success : true , favorited : isfavorited})
+
+    } catch(err) {
+            return res.status(400).json({ success : false , err : err});
+    }
+}
+
+export const postRemoveFavorite = async (req, res) => {
+    try {
+        const { userFrom, movieId } = req.body;
+        await Favorite.findOneAndDelete({ movieId , userFrom});
+        return res.status(200).json({ success : true });
+    } catch(err) {
+            return res.status(400).json({ success : false });
+    }
+};
+
+export const postaddFavorite = async (req, res) => {
+    try {
+        const { userFrom, movieId, original_title, release_date, runtime } = req.body;
+        // const favorite = new Favorite(req.body);
+        // await favorite.save();
+        const favorite = await Favorite.create({
+            userFrom,
+            movieId,
+            movieTitle : original_title,
+            moviePost : release_date,
+            movieRunTime : runtime
+        });
+        if(!favorite) {
+            return res.status(400).json({ success : false });
+        }
+        return res.status(200).json({ success : true });
+    } catch(err) {
+        console.log(err);
+            return res.status(400).json({ success : false });
+    }
+};
+
+export const postGetFavoriteMovie = async (req, res) => {
+    try {
+        const { userFrom : userFrom } = req.body;
+        const favorites = await Favorite.find({ userFrom : userFrom});
+        if(!favorites) {
+            return res.status(400).json({ success : false, err })
+        }
+        return res.status(200).json({ success : true , favorites})
+    } catch(err) {
+        return res.status(400).json({ success : false , err })
+    }
+}
