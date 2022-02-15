@@ -1,4 +1,5 @@
 import User from "../models/User";
+import multer from "multer";
 
 /*
         인증처리.

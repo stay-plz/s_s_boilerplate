@@ -18,8 +18,13 @@ function LandingPage(props) {
 
     return (
         <div>
-            LandingPage
-            <button onClick={onClickHandler}></button>
+            <h2>LandingPage</h2>
+            <button onClick={onClickHandler}>Logout</button>
+            <a href="/register"><h2>Register</h2></a>
+            <a href="/login"><h2>Login</h2></a>
+            <a href="/moviemain"><h2>Movie Main</h2></a>
+            <a href="/favorite"><h2>Favorite Movie</h2></a>
+            <a href="/video/upload"><h2>VideoUpload</h2></a>
         </div>
     );
 }

@@ -15,6 +15,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 //cookie-parser
 app.use(cookieParser());
+app.use('/uploads', express.static('uploads'));
 
 app.use("/", rootRouter);
 

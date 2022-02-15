@@ -12,8 +12,12 @@ import {
     postaddFavorite,
     postRemoveFavorite,
     postGetFavoriteMovie,
+    postUploadFiles,
+    postThumbnail,
+    postUploadVideo,
+    postgetVidoe,
 } from "../controller/rootController";
-import { authentication } from "../middlewares/middleswares";
+import { authentication, uploadFile } from "../middlewares/middleswares";
 
 const rootRouter = express.Router();
 
@@ -27,5 +31,10 @@ rootRouter.post("/api/favorite/favorited" , postFavorited);
 rootRouter.post("/api/favorite/removeFavorite" , postRemoveFavorite);
 rootRouter.post("/api/favorite/addFavorite" , postaddFavorite);
 rootRouter.post("/api/favorite/getFavoriteMovie" , postGetFavoriteMovie);
+rootRouter.post("/api/video/uploadfiles" , postUploadFiles);
+rootRouter.post("/api/video/thumbnail" , postThumbnail);
+rootRouter.post("/api/video/uploadVideo" , postUploadVideo);
+rootRouter.post("/api/video/getVideos" , postgetVidoe);
+
 
 export default rootRouter;
