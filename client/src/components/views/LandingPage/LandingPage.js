@@ -25,6 +25,7 @@ function LandingPage(props) {
             <a href="/moviemain"><h2>Movie Main</h2></a>
             <a href="/favorite"><h2>Favorite Movie</h2></a>
             <a href="/video/upload"><h2>VideoUpload</h2></a>
+            <a href="/video/main"><h2>VideoMain</h2></a>
         </div>
     );
 }

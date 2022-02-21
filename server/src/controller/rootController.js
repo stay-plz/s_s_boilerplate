@@ -1,6 +1,7 @@
 import User from "../models/User";
 import Video from "../models/Video"
 import Favorite from "../models/Favorite";
+import Subsciber from "../models/Subscriber";
 import bcrypt from "bcrypt";
 import multer from "multer"
 import ffmpeg from "fluent-ffmpeg";
@@ -238,14 +239,42 @@ export const postUploadVideo = (req, res) => {
     })
 }
 
-export const postgetVidoe = (req, res) => {
-    console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+export const postgetVideos = (req, res) => {
+    console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
     Video.find()
         .populate('writer')
         .exec((err, videos) => {
-            if(err) {console.log(err);
-            return res.status(400).send(err);
-            }
+            if(err) return res.status(400).send(err);
             return res.status(200).json({ success: true, videos })
         })
 }
+
+export const postgetVideoDetail = (req, res) => {
+    Video.findOne({ "_id" : req.body.videoId })
+    .populate('writer')
+    .exec((err, video) => {
+        if(err) return res.status(400).send(err);
+        res.status(200).json({ success: true, video })
+    })
+};
+
+export const postSubscribeNumber = (req, res) => {
+    Subsciber.find({ "userTo" : req.body.userTo})
+    .exec((err, subscribe) => {
+        if(err) return res.status(400).send(err);
+        return res.status(200).json({ success : true , subscribeNumber : subscribe.length});
+    })
+};
+
+export const postSubscribed = (req, res) => {
+    console.log(req.body)
+    Subsciber.find({ "userTo" : req.body.userTo , "userFrom" : req.body.userFrom })
+    .exec((err, subscribe) => {
+        if(err) return res.status(400).send(err);
+        let result = false;
+        if(subscribe.length !== 0) {
+            result = true;
+        }
+        return res.status(200).json({ success : true , subscribed : result });
+    })
+};

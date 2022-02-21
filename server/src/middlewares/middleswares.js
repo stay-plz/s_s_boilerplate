@@ -22,6 +22,8 @@ export const authentication = async (req, res, next) => {
         req.token = token;
         next();
     } catch (err) {
-        throw new Error(`${err.message}`);
+        // console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+        console.log(err.message)
+        // throw new Error(`${err.message}`);
     }
 };

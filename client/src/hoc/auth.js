@@ -17,25 +17,15 @@ export const auth = (SpecificComponent, option, adminRoute = null) => {
         useEffect(() => {
             dispatch(authUser())
                 .then(response => {
-                    // console.log(response);
-                    //로그인하지않은상태
                     if(!response.payload.isAuth) {
-                            // alert("로그인 안했어요 : " + response.payload.isAuth)
                         if(option) {
-                            // alert("로그인안했어요")
                             navigate("/login");
                         }
                     }else {
-                            // alert("else")
-                            // console.log(adminRoute + " adminRoute ")
-                            // console.log(option + " option ")
-                        //로그인한상태
                         if(adminRoute && !response.payload.isAdmin){
-                            // alert("로그인했어요");
                             navigate("/")
                         } else {
                             if(option === false){
-                                // alert("로그인했어요");
                                 navigate("/");
                             }
                         }

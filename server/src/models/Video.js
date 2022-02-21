@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const videoSchema = mongoose.Schema({
+const videoSchema = new mongoose.Schema({
     writer: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'

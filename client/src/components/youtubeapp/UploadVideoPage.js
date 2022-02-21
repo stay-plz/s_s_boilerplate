@@ -150,7 +150,7 @@ function UploadVideoPage(props) {
 {console.log(Thumbnail)}
                     {Thumbnail !== "" &&
                         <div>
-                            <img src={`http://localhost:4000/${Thumbnail}`} alt="haha" />
+                            <img src={`http://localhost:${process.env.REACT_APP_BACKEND_PORT}/${Thumbnail}`} alt="haha" />
                         </div>
                     }
                 </div>

@@ -8,12 +8,14 @@ import MovieDetail from "./components/movieapp/MovieDetail";
 import FavoritePage from "./components/movieapp/FavoritePage";
 import UploadVideoPage from "./components/youtubeapp/UploadVideoPage";
 import YoutubeMainPage from "./components/youtubeapp/YoutubeMainPage";
+import DetailVideoPage from "./components/youtubeapp/DetailVideoPage";
 
 const NewLandingPage = Auth(LandingPage, null);
 const NewLoginPage = Auth(LoginPage, false);
 const NewRegisterPage = Auth(RegisterPage, false);
-const NewUploadVideoPage = Auth(UploadVideoPage, null)
-const NewYoutubeMainPage = Auth(YoutubeMainPage, null)
+const NewUploadVideoPage = Auth(UploadVideoPage, null);
+const NewYoutubeMainPage = Auth(YoutubeMainPage, null);
+const NewDetailVideoPage = Auth(DetailVideoPage, null)
 
 function App() {
     return (
@@ -27,6 +29,7 @@ function App() {
                 <Route path="/favorite" element={<FavoritePage />} />
                 <Route path="/video/upload" element={<NewUploadVideoPage />} />
                 <Route path="/video/main" element={<NewYoutubeMainPage />} />
+                <Route path="/video/:videoId" element={<NewDetailVideoPage />} />
             </Routes>
         </BrowserRouter>
     );

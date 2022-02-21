@@ -15,9 +15,12 @@ import {
     postUploadFiles,
     postThumbnail,
     postUploadVideo,
-    postgetVidoe,
+    postgetVideos,
+    postgetVideoDetail,
+    postSubscribeNumber,
+    postSubscribed,
 } from "../controller/rootController";
-import { authentication, uploadFile } from "../middlewares/middleswares";
+import { authentication } from "../middlewares/middleswares";
 
 const rootRouter = express.Router();
 
@@ -34,7 +37,10 @@ rootRouter.post("/api/favorite/getFavoriteMovie" , postGetFavoriteMovie);
 rootRouter.post("/api/video/uploadfiles" , postUploadFiles);
 rootRouter.post("/api/video/thumbnail" , postThumbnail);
 rootRouter.post("/api/video/uploadVideo" , postUploadVideo);
-rootRouter.post("/api/video/getVideos" , postgetVidoe);
+rootRouter.post("/api/video/getVideos" , postgetVideos);
+rootRouter.post("/api/video/getVideoDetail" , postgetVideoDetail);
+rootRouter.post("/api/subscribe/subscribeNumber" , postSubscribeNumber);
+rootRouter.post("/api/subscribe/subscribed" , postSubscribed);
 
 
 export default rootRouter;
